@@ -1,4 +1,10 @@
+package DataHolder;
+
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.team25.team25scouting.R;
 
 import java.io.Serializable;
 

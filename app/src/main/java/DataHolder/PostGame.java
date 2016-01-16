@@ -1,3 +1,5 @@
+package DataHolder;
+
 import java.io.Serializable;
 
 public class PostGame implements Serializable{
