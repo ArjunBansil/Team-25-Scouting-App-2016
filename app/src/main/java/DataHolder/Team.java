@@ -1,19 +1,27 @@
+package DataHolder;
+
 import java.io.Serializable;
 
+import DataHolder.Intro;
+import DataHolder.TeleOp;
+import DataHolder.Autonomous;
+
+
+
 public class Team implements Serializable{
-    private Auto auto;
+    private Autonomous auto;
     private Intro intro;
     private PostGame pg;
     private TeleOp teleOp;
 
-    public Team(Intro i, Auto a, TeleOp t, PostGame p){
+    public Team(Intro i, Autonomous a, TeleOp t, PostGame p){
         this.intro = i;
         this.auto = a;
         this.teleOp = t;
         this.pg = p;
     }
 
-    public Auto getAuto(){
+    public Autonomous getAuto(){
         return auto;
     }
 

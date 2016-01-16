@@ -1,16 +1,14 @@
 package DataHolder;
 
-import java.io.Serializable;
-
 /**
- * Created by Arjun Bansil on 1/13/2016.
+ * Created by Arjun Bansil on 1/16/2016.
  */
-public class Auto implements Serializable {
+public class Autonomous {
     String defenses;
     int shotsMadeHigh, shotsMadeLow;
     boolean breach, pastDefense;
 
-    public Auto(String d, int sL, int sH, boolean b, boolean pD){
+    public Autonomous(String d, int sL, int sH, boolean b, boolean pD){
         this.defenses = d;
         this.shotsMadeHigh = sH;
         this.shotsMadeLow = sL;
@@ -37,5 +35,4 @@ public class Auto implements Serializable {
     public int getShotsMadeLow(){
         return shotsMadeLow;
     }
-
 }
