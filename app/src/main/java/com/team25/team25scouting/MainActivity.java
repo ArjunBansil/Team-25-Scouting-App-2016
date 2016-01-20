@@ -9,7 +9,20 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import DataHolder.Autonomous;
+import DataHolder.Intro;
+import DataHolder.PostGame;
+import DataHolder.TeleOp;
+
 public class MainActivity extends AppCompatActivity {
+
+    private Main_Page mainPage = new Main_Page();
+    private Gen_info genInfo = new Gen_info();
+    private Auto_Fragment af = new Auto_Fragment();
+    private Autonomous auto;
+    private Intro intro;
+    private TeleOp teleOp;
+    private PostGame pg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,36 +30,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        initialize();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void goToGen(){
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, genInfo, "General")
+                .addToBackStack(null)
+                .commit();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void goToAuto(Intro i){
+        this.intro = i;
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, af, "Auto")
+                .addToBackStack(null)
+                .commit();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
     }
+
+    private void initialize(){
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, mainPage, "main")
+                .addToBackStack(null)
+                .commit();
+    }
+
 }

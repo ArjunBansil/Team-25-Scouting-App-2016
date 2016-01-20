@@ -1,0 +1,97 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.team25.team25scouting.Gen_info">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_marginTop="73dp"
+            android:layout_marginRight="120dp"
+            android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Team Number: "
+            android:textColor="#000"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/textView" />
+
+        <EditText
+            android:textColor="#000"
+            android:hint="Enter Team Number"
+            android:textColorHint="@color/greyedOut"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/teamNumber"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="44dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/teamNumber"
+            android:layout_marginTop="30dp"
+            android:id="@+id/title_2"
+            android:textColor="#000"
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:text="Match Number"/>
+
+        <EditText
+            android:layout_width="250dp"
+            android:hint="Enter Match Number"
+            android:textColorHint="@color/greyedOut"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:ems="10"
+            android:layout_centerHorizontal="true"
+            android:textColor="#000"
+            android:id="@+id/matchNumber"
+            android:layout_below="@id/title_2"
+            android:layout_marginTop="44dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scout Name:"
+            android:layout_below="@+id/matchNumber"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/title_3"
+            android:textSize="24sp"/>
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:hint="Enter Your Name"
+            android:textColorHint="@color/greyedOut"
+            android:id="@+id/scoutName"
+            android:ems="10"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/title_3"
+            android:textColor="#000"
+            android:layout_marginTop="44dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/greyedOut"
+            android:text="Continue"
+            android:id="@+id/goToAuto"
+            android:layout_below="@+id/scoutName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="117dp" />
+
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

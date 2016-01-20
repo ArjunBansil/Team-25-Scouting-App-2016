@@ -1,0 +1,89 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card-view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.team25.team25scouting.Main_Page">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            card-view:cardUseCompatPadding="true"
+            card-view:elevation="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/sharing">
+
+            <ImageView
+                android:id="@+id/sharingPic"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_option_1"
+                android:layout_marginLeft="240dp"
+                android:textColor="#000"
+                android:textSize="22sp"
+                android:layout_marginTop="150dp"/>
+
+        </android.support.v7.widget.CardView>
+        
+        <android.support.v7.widget.CardView
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/delete"
+            card-view:cardUseCompatPadding="true"
+            card-view:elevation="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/sharing"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:layout_marginLeft="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="125dp"
+                android:id="@+id/deletePic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_option_2"
+                android:layout_marginLeft="140dp"
+                android:textColor="#000"
+                android:textSize="22sp"
+                android:layout_marginTop="150dp"/>
+
+
+
+
+        </android.support.v7.widget.CardView>
+
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_name"
+        android:id="@+id/addRecord"
+        app:elevation="6dp"
+        app:pressedTranslationZ="3dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
+
+</android.support.design.widget.CoordinatorLayout>
