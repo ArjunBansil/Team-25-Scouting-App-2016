@@ -4,94 +4,191 @@
     android:layout_height="match_parent"
     tools:context="com.team25.team25scouting.Gen_info">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_marginTop="73dp"
-            android:layout_marginRight="120dp"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Team Number: "
-            android:textColor="#000"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/textView" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <EditText
-            android:textColor="#000"
-            android:hint="Enter Team Number"
-            android:textColorHint="@color/greyedOut"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/teamNumber"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="44dp" />
+            <TextView
+                android:layout_marginTop="73dp"
+                android:layout_marginRight="120dp"
+                android:textSize="24sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Team Number: "
+                android:textColor="#000"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/textView" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/teamNumber"
-            android:layout_marginTop="30dp"
-            android:id="@+id/title_2"
-            android:textColor="#000"
-            android:layout_centerHorizontal="true"
-            android:textSize="24sp"
-            android:text="Match Number"/>
+            <EditText
+                android:textColor="#000"
+                android:hint="Enter Team Number"
+                android:textColorHint="@color/greyedOut"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/teamNumber"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="44dp" />
 
-        <EditText
-            android:layout_width="250dp"
-            android:hint="Enter Match Number"
-            android:textColorHint="@color/greyedOut"
-            android:layout_height="40dp"
-            android:inputType="number"
-            android:ems="10"
-            android:layout_centerHorizontal="true"
-            android:textColor="#000"
-            android:id="@+id/matchNumber"
-            android:layout_below="@id/title_2"
-            android:layout_marginTop="44dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/teamNumber"
+                android:layout_marginTop="30dp"
+                android:id="@+id/title_2"
+                android:textColor="#000"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp"
+                android:text="Match Number"/>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Scout Name:"
-            android:layout_below="@+id/matchNumber"
-            android:layout_marginTop="30dp"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/title_3"
-            android:textSize="24sp"/>
-
-        <EditText
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:inputType="textPersonName"
-            android:hint="Enter Your Name"
-            android:textColorHint="@color/greyedOut"
-            android:id="@+id/scoutName"
-            android:ems="10"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/title_3"
-            android:textColor="#000"
-            android:layout_marginTop="44dp"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/greyedOut"
-            android:text="Continue"
-            android:id="@+id/goToAuto"
-            android:layout_below="@+id/scoutName"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="117dp" />
+            <EditText
+                android:layout_width="250dp"
+                android:hint="Enter Match Number"
+                android:textColorHint="@color/greyedOut"
+                android:layout_height="40dp"
+                android:inputType="number"
+                android:ems="10"
+                android:layout_centerHorizontal="true"
+                android:textColor="#000"
+                android:id="@+id/matchNumber"
+                android:layout_below="@id/title_2"
+                android:layout_marginTop="44dp"/>
 
 
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scout Name:"
+                android:layout_below="@+id/matchNumber"
+                android:layout_marginTop="30dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/title_3"
+                android:textSize="24sp"/>
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:inputType="textPersonName"
+                android:hint="Enter Your Name"
+                android:textColorHint="@color/greyedOut"
+                android:id="@+id/scoutName"
+                android:ems="10"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/title_3"
+                android:textColor="#000"
+                android:layout_marginTop="44dp"/>
+
+            <ImageView
+                android:layout_width="250dp"
+                android:id="@+id/d_pic"
+                android:layout_height="250dp"
+                android:layout_below="@+id/scoutName"
+                android:layout_marginLeft="270dp"
+                android:layout_marginTop="40dp"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cheval"
+                android:layout_below="@+id/scoutName"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/cheval"
+                android:textColor="#000"
+                />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/d_bridge"
+                android:text="@string/d_bridge"
+                android:layout_below="@id/cheval"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="100dp"
+                android:textColor="#000"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/moat"
+                android:layout_below="@+id/d_bridge"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="100dp"
+                android:text="@string/moat"
+                android:textColor="#000"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/p_culli"
+                android:layout_below="@+id/moat"
+                android:text="@string/p_culli"
+                android:textColor="#000"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="30dp"
+                />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ramp"
+                android:text="@string/ramp"
+                android:layout_below="@+id/p_culli"
+                android:textColor="#000"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="30dp"
+                />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/r_wall"
+                android:text="@string/r_wall"
+                android:layout_below="@+id/ramp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="100dp"
+                android:textColor="#000"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/r_terrain"
+                android:text="@string/r_terrain"
+                android:layout_below="@+id/r_wall"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="100dp"
+                android:textColor="#000"
+                />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/s_port"
+                android:text="@string/s_port"
+                android:textColor="#000"
+                android:layout_below="@+id/r_terrain"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="100dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/greyedOut"
+                android:text="Continue"
+                android:id="@+id/goToAuto"
+                android:layout_below="@+id/scoutName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="550dp" />
+
+
+        </RelativeLayout>
+    </ScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

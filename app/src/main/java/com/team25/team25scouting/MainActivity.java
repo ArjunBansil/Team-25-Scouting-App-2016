@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 import DataHolder.Autonomous;
+import DataHolder.Defense;
 import DataHolder.Intro;
 import DataHolder.PostGame;
 import DataHolder.TeleOp;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Intro intro;
     private TeleOp teleOp;
     private PostGame pg;
+    public ArrayList<Defense> d_present;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void goToAuto(Intro i){
+    public void goToAuto(Intro i, ArrayList<Defense> list){
         this.intro = i;
+        this.d_present = list;
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, af, "Auto")

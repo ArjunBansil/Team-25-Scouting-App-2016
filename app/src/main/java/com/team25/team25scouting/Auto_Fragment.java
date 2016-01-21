@@ -7,6 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import DataHolder.Defense;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +18,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Auto_Fragment extends Fragment {
+
+
     public Auto_Fragment() {
 
     }
@@ -32,6 +38,19 @@ public class Auto_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_auto, container, false);
+        final MainActivity ma = (MainActivity)getActivity();
+
+        ArrayList<Defense> list = ma.d_present;
+
+        ArrayList<String> temp = new ArrayList<String>();
+
+        for(int i = 0; i<list.size(); i++){
+            temp.add(list.get(i).getName());
+        }
+        temp.add("Low Bar");
+
+
+
 
 
         return view;
