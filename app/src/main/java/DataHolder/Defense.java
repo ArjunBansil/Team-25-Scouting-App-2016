@@ -14,12 +14,27 @@ public class Defense implements Serializable{
     private int effectiveness = 0;
     private Bitmap bitmap = null;
     private Context context = null;
+    private int breachCount = 0;
 
-    public Defense(String d, int e, Context c){
+
+    public Defense(String d, int e, int bc, Context c){
+        this.breachCount = bc;
         this.d_name = d;
         this.effectiveness = e;
         this.context = c;
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_not_interested_black_24dp );
+    }
+
+    public void setEffectiveness(int e){
+        this.effectiveness = e;
+    }
+
+    public void setBreachCount(int b){
+        this.breachCount = b;
+    }
+
+    public void setBitmap(Bitmap b){
+        this.bitmap = b;
     }
 
     public String getName(){
@@ -33,4 +48,9 @@ public class Defense implements Serializable{
     public Bitmap returnBitmap(){
         return bitmap;
     }
+
+    public int getBreachCount(){
+        return breachCount;
+    }
+
 }

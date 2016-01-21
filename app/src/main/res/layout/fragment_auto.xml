@@ -4,9 +4,146 @@
     android:layout_height="match_parent"
     tools:context="com.team25.team25scouting.Auto_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/title_auto"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/auto"
+            android:textSize="30sp"
+            android:textColor="#000"
+            />
+
+        <RadioButton
+            android:id="@+id/defReach"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_auto"
+            android:text="Did the robot reach a defense?"
+            android:layout_marginLeft="10dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="#000"
+            android:layout_marginTop="40dp"/>
+
+        <RadioButton
+            android:id="@+id/defBreach"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Did it breach a defense?"
+            android:textColor="#000"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_below="@+id/defReach"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/defenseContainer"
+            android:layout_below="@id/defBreach"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            >
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shots Made High"
+            android:textColor="#000"
+            android:layout_below="@+id/defenseContainer"
+            android:id="@+id/shotsHighT"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:textSize="23sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#000"
+            android:text="0"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shotsHighT"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/shotsHigh_A"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="+"
+            android:id="@+id/incHigh"
+            android:layout_below="@+id/shotsHighT"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/greyedOut"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="-"
+            android:id="@+id/decHigh"
+            android:layout_below="@+id/shotsHighT"
+            android:layout_marginTop="30dp"
+            android:background="@color/greyedOut"
+            android:layout_marginLeft="200dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shotsLowT"
+            android:text="Shots Made Low"
+            android:textColor="#000"
+            android:textSize="23sp"
+            android:layout_below="@id/decHigh"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#000"
+            android:layout_below="@id/shotsLowT"
+            android:id="@+id/shotsLow_A"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="+"
+            android:id="@+id/incLow"
+            android:layout_below="@+id/shotsLowT"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="70dp"
+            android:background="@color/greyedOut"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="-"
+            android:id="@+id/decLow"
+            android:layout_below="@+id/shotsLowT"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="200dp"
+            android:background="@color/greyedOut"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:background="@color/greyedOut"
+            android:id="@+id/goToTele"
+            android:layout_below="@+id/decLow"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="94dp" />
+
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
