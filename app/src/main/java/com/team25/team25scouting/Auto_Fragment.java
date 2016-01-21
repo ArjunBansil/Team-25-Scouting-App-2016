@@ -33,6 +33,7 @@ public class Auto_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_auto, container, false);
 
+
         return view;
     }
 
