@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Main_Page mainPage = new Main_Page();
     private Gen_info genInfo = new Gen_info();
     private Auto_Fragment af = new Auto_Fragment();
+    private TeleOpFragment tele = new TeleOpFragment();
     private Autonomous auto;
     private Intro intro;
     private TeleOp teleOp;
@@ -54,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(null)
                 .commit();
 
+
+    }
+
+    public void goToTele(Autonomous a){
+        this.auto = a;
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, tele, "TeleOp")
+                .addToBackStack(null)
+                .commit();
 
     }
 

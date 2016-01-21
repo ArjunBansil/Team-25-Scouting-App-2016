@@ -27,6 +27,7 @@
             android:text="Did the robot reach a defense?"
             android:layout_marginLeft="10dp"
             android:textSize="20sp"
+            android:backgroundTint="@color/colorPrimary"
             android:textColor="#000"
             android:layout_marginTop="40dp"/>
 
@@ -80,7 +81,7 @@
             android:id="@+id/incHigh"
             android:layout_below="@+id/shotsHighT"
             android:layout_marginLeft="70dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="30dp"
             android:background="@color/greyedOut"
             />
         <Button
@@ -89,10 +90,60 @@
             android:text="-"
             android:id="@+id/decHigh"
             android:layout_below="@+id/shotsHighT"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="30dp"
             android:background="@color/greyedOut"
             android:layout_marginLeft="200dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shotsLowT"
+            android:text="Shots Made Low"
+            android:textColor="#000"
+            android:textSize="23sp"
+            android:layout_below="@id/decHigh"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#000"
+            android:layout_below="@id/shotsLowT"
+            android:id="@+id/shotsLow_A"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="+"
+            android:id="@+id/incLow"
+            android:layout_below="@+id/shotsLowT"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="70dp"
+            android:background="@color/greyedOut"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="-"
+            android:id="@+id/decLow"
+            android:layout_below="@+id/shotsLowT"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="200dp"
+            android:background="@color/greyedOut"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:background="@color/greyedOut"
+            android:id="@+id/goToTele"
+            android:layout_below="@+id/decLow"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="94dp" />
 
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
