@@ -12,14 +12,11 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import DataHolder.Autonomous;
 import DataHolder.Defense;
 
 public class Auto_Fragment extends Fragment {
-
     public RadioButton breach, reach;
     public Spinner sp;
     public Button incHigh, incLow, decHigh, decLow, goNext;
@@ -62,7 +59,6 @@ public class Auto_Fragment extends Fragment {
         for(int i = 0; i<list.size(); i++){
             temp.add(list.get(i).getName());
         }
-        temp.add("Low Bar");
         sp = (Spinner)view.findViewById(R.id.defenseContainer);
         sp.setVisibility(View.INVISIBLE);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext()
@@ -75,10 +71,20 @@ public class Auto_Fragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     breach.setVisibility(View.VISIBLE);
-                    sp.setVisibility(View.VISIBLE);
                 } else {
                     breach.setVisibility(View.INVISIBLE);
                     breach.setChecked(false);
+                    sp.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        breach.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    sp.setVisibility(View.VISIBLE);
+                }else {
                     sp.setVisibility(View.INVISIBLE);
                 }
             }

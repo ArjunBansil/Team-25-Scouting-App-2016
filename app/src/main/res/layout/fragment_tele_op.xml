@@ -5,8 +5,22 @@
     tools:context="com.team25.team25scouting.TeleOpFragment">
 
     <RelativeLayout
+        android:id="@+id/recContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="375dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/defenseRecView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/recContainer"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
 
     </RelativeLayout>
 
