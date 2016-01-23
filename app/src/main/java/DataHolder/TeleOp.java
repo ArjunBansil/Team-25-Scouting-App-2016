@@ -7,7 +7,7 @@ public class TeleOp implements Serializable{
     private int shotsHigh, shotsLow;
     private ArrayList<Defense> list;
     private boolean towerBreach, towerClimb;
-    private String ballSource;
+    private String scoring_loc;
 
 
     public TeleOp(int sH, int sL, ArrayList<Defense> l, boolean tB, boolean tC, String bS){
@@ -16,7 +16,7 @@ public class TeleOp implements Serializable{
         this.list = l;
         this.towerBreach = tB;
         this.towerClimb = tC;
-        this.ballSource = bS;
+        this.scoring_loc = bS;
     }
 
     public int getShotsHigh(){
@@ -39,7 +39,7 @@ public class TeleOp implements Serializable{
         return towerClimb;
     }
 
-    public String getBallSource(){
-        return ballSource;
+    public String getScoringLoc(){
+        return scoring_loc;
     }
 }

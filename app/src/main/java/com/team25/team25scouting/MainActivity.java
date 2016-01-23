@@ -54,7 +54,16 @@ public class MainActivity extends AppCompatActivity {
         this.intro = i;
         this.d_present = list;
         setUpD_List();
-        d_present.add(new Defense("Low Bar", 0,0,getApplicationContext()));
+        Defense low_bar = new Defense("Low Bar", 0, 0, getApplicationContext());
+        try{
+            InputStream ims = this.getAssets().open("Low Bar.png");
+            Drawable d = Drawable.createFromStream(ims, null);
+            Bitmap b = ((BitmapDrawable)d).getBitmap();
+            low_bar.setBitmap(b);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        d_present.add(low_bar);
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, af, "Auto")
