@@ -6,8 +6,9 @@
 
     <RelativeLayout
         android:id="@+id/recContainer"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="375dp">
+        android:layout_height="365dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/defenseRecView"
@@ -18,9 +19,164 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_below="@+id/recContainer"
+        android:layout_marginTop="390dp"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shots Made High"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:id="@+id/textView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="0"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/shotsHigh_T"
+            android:layout_marginTop="50dp"
+            android:textSize="14sp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:id="@+id/goToPost"
+            android:background="@color/greyedOut"
+            android:layout_marginBottom="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:background="@color/greyedOut"
+            android:id="@+id/incHighT"
+            android:layout_marginStart="15dp"
+            android:layout_below="@+id/textView2"
+            android:layout_toEndOf="@+id/shotsHigh_T" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:background="@color/greyedOut"
+            android:text="-"
+            android:id="@+id/decHighT"
+            android:layout_below="@+id/textView2"
+            android:layout_toStartOf="@+id/goToPost" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Shots Made Low"
+            android:layout_marginTop="18dp"
+            android:layout_below="@+id/incHighT"
+            android:layout_alignStart="@+id/shotsHigh_T"
+            android:id="@+id/textView4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/shotsLow_T"
+            android:layout_below="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_marginTop="18dp" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:background="@color/greyedOut"
+            android:id="@+id/incLowT"
+            android:layout_below="@+id/textView4"
+            android:layout_alignStart="@+id/incHighT"
+            android:layout_alignEnd="@+id/incHighT" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:background="@color/greyedOut"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:id="@+id/decLowT"
+            android:layout_below="@+id/textView4"
+            android:layout_alignEnd="@+id/decHighT" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Scoring Locations:"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/incLowT"
+            android:layout_alignStart="@+id/shotsLow_T"
+            android:layout_marginTop="38dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="Outerworks"
+            android:id="@+id/outerworks"
+            android:checked="false"
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_toEndOf="@+id/textView2" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Courtyard"
+            android:textColor="#000"
+            android:id="@+id/courtyard"
+            android:layout_alignTop="@+id/outerworks"
+            android:layout_toEndOf="@+id/outerworks"
+            android:layout_marginStart="30dp"
+            android:checked="false" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Batter"
+            android:textColor="#000"
+            android:id="@+id/batter"
+            android:layout_alignTop="@+id/courtyard"
+            android:layout_toEndOf="@+id/courtyard"
+            android:layout_marginStart="50dp"
+            android:checked="false" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Did They Breach the Tower?"
+            android:id="@+id/towerBreach"
+            android:textColor="#000"
+            android:layout_marginTop="30dp"
+            android:checked="false"
+            android:layout_below="@+id/outerworks"
+            android:layout_alignStart="@+id/textView3" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Did They Climb the Tower?"
+            android:id="@+id/towerClimb"
+            android:textColor="#000"
+            android:layout_below="@+id/towerBreach"
+            android:layout_alignStart="@+id/towerBreach"
+            android:layout_marginTop="23dp"
+            android:checked="false" />
+
 
     </RelativeLayout>
 

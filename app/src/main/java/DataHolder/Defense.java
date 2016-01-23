@@ -53,4 +53,8 @@ public class Defense implements Serializable{
         return breachCount;
     }
 
+    public Context getContext(){
+        return context;
+    }
+
 }
