@@ -111,6 +111,7 @@ public class TeleOpFragment extends Fragment {
             }
         });
 
+        //This is the RecyclerView stuff
 
         RecyclerView recList = (RecyclerView)view.findViewById(R.id.defenseRecView);
         recList.setHasFixedSize(true);
