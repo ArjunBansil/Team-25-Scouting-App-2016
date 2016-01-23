@@ -1,5 +1,8 @@
 package com.team25.team25scouting;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import DataHolder.Autonomous;
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     public void goToAuto(Intro i, ArrayList<Defense> list){
         this.intro = i;
         this.d_present = list;
+        setUpD_List();
+        d_present.add(new Defense("Low Bar", 0,0,getApplicationContext()));
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, af, "Auto")
@@ -56,6 +62,22 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
 
+    }
+
+    public void setUpD_List(){
+        for(int i = 0; i < d_present.size(); i++){
+            Defense temp = d_present.get(i);
+            try{
+                InputStream ims = getApplicationContext().getAssets().open(temp.getName() + ".png");
+                Drawable d = Drawable.createFromStream(ims, null);
+                Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+                temp.setBitmap(bitmap);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            d_present.remove(i);
+            d_present.add(i, temp);
+        }
     }
 
     public void goToTele(Autonomous a){

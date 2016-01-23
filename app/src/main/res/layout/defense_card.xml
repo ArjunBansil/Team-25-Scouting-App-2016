@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card-view="http://schemas.android.com/apk/res-auto"
+    card-view:cardUseCompatPadding="true"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:layout_width="match_parent" android:layout_height="350dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/defense_pic"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_not_interested_black_24dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#000"
+            android:id="@+id/breachCount"
+            android:layout_below="@+id/defense_pic"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="90dp" />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:text="+"
+            android:id="@+id/incBCount"
+            android:layout_alignBottom="@+id/breachCount"
+            android:layout_toEndOf="@+id/breachCount"
+            android:layout_marginStart="30dp" />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:text="-"
+            android:id="@+id/decCount"
+            android:layout_alignBottom="@+id/incBCount"
+            android:layout_toEndOf="@+id/incBCount"
+            android:layout_marginStart="20dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/b_rating"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignBottom="@+id/decCount"
+            android:layout_toEndOf="@+id/decCount" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Defense"
+            android:id="@+id/def_title"
+            android:layout_above="@+id/b_rating"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

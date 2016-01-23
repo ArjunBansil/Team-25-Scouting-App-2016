@@ -44,9 +44,12 @@
             android:layout_marginLeft="10dp"/>
 
         <Spinner
+            android:contentDescription="Defense Breach"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/greyedOut"
             android:id="@+id/defenseContainer"
+            android:popupBackground="@color/greyedOut"
             android:layout_below="@id/defBreach"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
