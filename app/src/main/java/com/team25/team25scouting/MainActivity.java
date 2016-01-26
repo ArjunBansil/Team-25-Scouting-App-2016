@@ -18,11 +18,11 @@ import DataHolder.TeleOp;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Main_Page mainPage = new Main_Page();
-    private Gen_info genInfo = new Gen_info();
-    private Auto_Fragment af = new Auto_Fragment();
-    private TeleOpFragment tele = new TeleOpFragment();
-    private PostGameFrag post = new PostGameFrag();
+    private Main_Page mainPage = Main_Page.newInstance();
+    private Gen_info genInfo =  Gen_info.newInstance();
+    private Auto_Fragment af = Auto_Fragment.newInstance();
+    private TeleOpFragment tele = TeleOpFragment.newInstance();
+    private PostGameFrag post = PostGameFrag.newInstance();
     private Autonomous auto;
     private Intro intro;
     private TeleOp teleOp;
@@ -110,6 +110,15 @@ public class MainActivity extends AppCompatActivity {
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, mainPage, "main")
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void finish(PostGame p){
+        this.pg = p;
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, mainPage, "finish")
                 .addToBackStack(null)
                 .commit();
     }

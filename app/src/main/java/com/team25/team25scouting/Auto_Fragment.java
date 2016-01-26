@@ -1,14 +1,17 @@
 package com.team25.team25scouting;
 
 
+import android.media.Image;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,6 +24,7 @@ public class Auto_Fragment extends Fragment {
     public Spinner sp;
     public Button incHigh, incLow, decHigh, decLow, goNext;
     public TextView shotHigh, shotLow;
+    public ImageView pic;
     public int shotsMadeHigh = 0, shotsMadeLow = 0;
 
     public Auto_Fragment() {
@@ -42,6 +46,7 @@ public class Auto_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_auto, container, false);
         getActivity().setTitle("Add Record");
+        pic = (ImageView)view.findViewById(R.id.def_pic);
         breach = (RadioButton)view.findViewById(R.id.defBreach);
         reach = (RadioButton)view.findViewById(R.id.defReach);
         breach.setVisibility(View.INVISIBLE);
@@ -65,6 +70,25 @@ public class Auto_Fragment extends Fragment {
                 , android.R.layout.simple_spinner_item, temp);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(adapter);
+
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ArrayList<Defense> list = ma.d_present;
+                Defense d = null;
+                for(int i =0; i<list.size();i++ ){
+                    if(list.get(i).getName().equals(parent.getSelectedItem().toString())){
+                        d= list.get(i);
+                    }
+                }
+                pic.setImageBitmap(d.returnBitmap());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         reach.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -113,7 +137,7 @@ public class Auto_Fragment extends Fragment {
         decHigh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(shotsMadeHigh > 0){
+                if (shotsMadeHigh > 0) {
                     shotsMadeHigh--;
                     shotHigh.setText("" + shotsMadeHigh);
                 }
@@ -123,9 +147,9 @@ public class Auto_Fragment extends Fragment {
         decLow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(shotsMadeLow > 0){
+                if (shotsMadeLow > 0) {
                     shotsMadeLow--;
-                    shotLow.setText(""+shotsMadeLow);
+                    shotLow.setText("" + shotsMadeLow);
                 }
             }
         });
@@ -133,7 +157,7 @@ public class Auto_Fragment extends Fragment {
         goNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String defense = (String)sp.getSelectedItem();
+                String defense = (String) sp.getSelectedItem();
                 Autonomous auto = new Autonomous(defense, shotsMadeHigh, shotsMadeLow, breach.isChecked(), reach.isChecked());
                 ma.goToTele(auto);
             }

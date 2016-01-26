@@ -45,6 +45,7 @@ public class DefenseAdapter extends RecyclerView.Adapter<DefenseAdapter.DefenseV
 
 
         ArrayList<String> ratingList = new ArrayList<String>();
+        ratingList.add("0");
         ratingList.add("1");
         ratingList.add("2");
         ratingList.add("3");

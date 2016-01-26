@@ -35,7 +35,7 @@ public class TeleOpFragment extends Fragment {
     public TeleOpFragment() {
     }
 
-    public static TeleOpFragment newInstance(String param1, String param2) {
+    public static TeleOpFragment newInstance() {
         TeleOpFragment fragment = new TeleOpFragment();
         return fragment;
     }
