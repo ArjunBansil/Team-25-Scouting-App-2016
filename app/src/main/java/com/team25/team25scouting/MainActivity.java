@@ -4,13 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -27,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Gen_info genInfo = new Gen_info();
     private Auto_Fragment af = new Auto_Fragment();
     private TeleOpFragment tele = new TeleOpFragment();
+    private PostGameFrag post = new PostGameFrag();
     private Autonomous auto;
     private Intro intro;
     private TeleOp teleOp;
@@ -98,6 +94,17 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
     }
+
+    public void goToPost(TeleOp t){
+        this.teleOp = t;
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, post, "Post Game")
+                .addToBackStack(null)
+                .commit();
+    }
+
+
 
     private void initialize(){
         getFragmentManager()

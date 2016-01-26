@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import DataHolder.Defense;
 import DataHolder.DefenseAdapter;
+import DataHolder.TeleOp;
 
 
 public class TeleOpFragment extends Fragment {
@@ -48,6 +49,8 @@ public class TeleOpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tele_op, container, false);
+
+        getActivity().setTitle("Tele-Op");
 
         goToPost = (Button)view.findViewById(R.id.goToPost);
         incHigh = (Button)view.findViewById(R.id.incHighT);
@@ -118,7 +121,7 @@ public class TeleOpFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(LinearLayoutManager.HORIZONTAL);
         recList.setLayoutManager(llm);
-        MainActivity ma = (MainActivity)getActivity();
+        final MainActivity ma = (MainActivity)getActivity();
         da = new DefenseAdapter(ma.d_present);
         recList.setAdapter(da);
 
@@ -127,6 +130,16 @@ public class TeleOpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ArrayList<Defense> l = (ArrayList<Defense>) da.getList();
+                String defenses = "";
+                if(outerworks.isChecked()){
+                    defenses+="Outerworks ";
+                }else if(batter.isChecked()){
+                    defenses+="Batter ";
+                }else if(courtyard.isChecked()){
+                    defenses+="Courtyard";
+                }
+                TeleOp tele = new TeleOp(shotsHigh, shotsLow, l, towerBreach.isChecked(), towerClimb.isChecked(), defenses);
+                ma.goToPost(tele);
 
             }
         });
