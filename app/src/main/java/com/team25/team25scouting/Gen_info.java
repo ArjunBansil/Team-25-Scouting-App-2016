@@ -31,7 +31,7 @@ public class Gen_info extends Fragment {
 
     }
 
-    public static Gen_info newInstance(String param1, String param2) {
+    public static Gen_info newInstance() {
         Gen_info fragment = new Gen_info();
         return fragment;
     }

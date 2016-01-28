@@ -148,5 +148,13 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="94dp" />
 
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/def_pic"
+            android:layout_below="@+id/title_auto"
+            android:layout_toEndOf="@+id/goToTele" />
+
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

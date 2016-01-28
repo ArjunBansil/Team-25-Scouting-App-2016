@@ -22,4 +22,6 @@ public class Intro implements Serializable {
     public int getTeamNum(){
         return teamNum;
     }
+
+    public String getScoutName(){return scoutName;}
 }
