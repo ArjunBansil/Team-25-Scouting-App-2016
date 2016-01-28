@@ -5,13 +5,17 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -25,6 +29,8 @@ import java.io.InputStream;
  * create an instance of this fragment.
  */
 public class Main_Page extends Fragment {
+
+    CardView sharing, delete;
 
 
     private OnFragmentInteractionListener mListener;
@@ -50,6 +56,31 @@ public class Main_Page extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_main, container, false);
         ImageView img = (ImageView)view.findViewById(R.id.sharingPic);
         ImageView img2 = (ImageView)view.findViewById(R.id.deletePic);
+        sharing = (CardView)view.findViewById(R.id.sharing);
+        delete = (CardView)view.findViewById(R.id.delete);
+
+        sharing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "Scouting App");
+
+                    if(!directory.exists()){
+                        Log.i("tag", "Directory doesn't exist");
+                        boolean b = directory.mkdir();
+                        if(b){
+                            Log.i("tag", "Directory created");
+                        }else if(!b){
+                            Log.i("tag", "Directory not CREATED");
+                        }
+                    }
+                    File file = new File(directory, "ScoutingInfo.csv");
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
         FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.addRecord);
         final MainActivity ma = (MainActivity)getActivity();
         fab.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +104,6 @@ public class Main_Page extends Fragment {
         }catch (IOException e){
             e.printStackTrace();
         }
-
 
 
 
@@ -103,16 +133,9 @@ public class Main_Page extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
+
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

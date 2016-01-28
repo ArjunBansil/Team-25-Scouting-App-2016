@@ -105,6 +105,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed(){
+        if(getFragmentManager().findFragmentByTag("main") != null && getFragmentManager().findFragmentByTag("Auto")==null){
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content, mainPage)
+                    .addToBackStack(null)
+                    .commit();
+        }else if(getFragmentManager().findFragmentByTag("main")!=null && getFragmentManager().findFragmentByTag("TeleOp") ==null){
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content, genInfo)
+                    .addToBackStack(null)
+                    .commit();
+        }else if(getFragmentManager().findFragmentByTag("TeleOp")!=null && getFragmentManager().findFragmentByTag("Post Game") == null){
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content, af)
+                    .addToBackStack(null)
+                    .commit();
+        }else if(getFragmentManager().findFragmentByTag("Post Game") == null && teleOp != null){
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content, tele)
+                    .addToBackStack(null)
+                    .commit();
+        }else{
+            super.onBackPressed();
+        }
+    }
+
+
 
     private void initialize(){
         getFragmentManager()
