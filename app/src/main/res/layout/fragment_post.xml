@@ -24,6 +24,7 @@
             android:layout_width="550dp"
             android:layout_height="wrap_content"
             android:hint="Comments"
+            android:textColor="#000"
             android:textColorHint="@color/greyedOut"
             android:layout_marginTop="69dp"
             android:id="@+id/comments"

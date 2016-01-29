@@ -1,6 +1,7 @@
 package com.team25.team25scouting;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -63,7 +64,7 @@ public class Main_Page extends Fragment {
             @Override
             public void onClick(View v) {
                 try{
-                    File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "Scouting App");
+                    File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "Scouting App");
 
                     if(!directory.exists()){
                         Log.i("tag", "Directory doesn't exist");
@@ -75,8 +76,19 @@ public class Main_Page extends Fragment {
                         }
                     }
                     File file = new File(directory, "ScoutingInfo.csv");
+                    if(file.length() > 0){
+                        Intent share = new Intent();
+                        share.setAction(Intent.ACTION_SEND);
+                        share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+                        share.setType("text/plain");
+                        Intent chooser = Intent.createChooser(share, "Scouting App");
+                        startActivity(chooser);
+                    }else{
+                        Snackbar.make(view, "File is not long enough or not created", Snackbar.LENGTH_SHORT).show();
+                    }
                 }catch (Exception e){
                     e.printStackTrace();
+                    Snackbar.make(view, "File is not created", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

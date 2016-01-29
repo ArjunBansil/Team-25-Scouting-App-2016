@@ -58,18 +58,13 @@ public class DatabaseWriter {
 
     public void write(){
         try{
-            File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "Scouting App");
-
+            File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Scouting App");
             if(!directory.exists()){
-                Log.i("tag", "Directory doesn't exist");
-                boolean b = directory.mkdir();
-                if(b){
-                    Log.i("tag", "Directory created");
-                }else if(!b){
-                    Log.i("tag", "Directory not CREATED");
-                }
+                directory.mkdir();
+                Log.i("tag", "Directoy has been created holmes");
+            }else {
+                Log.i("tag", "Directory is already here fam");
             }
-
             File file = new File(directory, "ScoutingInfo.csv");
             Log.i("tag", "File is created");
             writer = new FileWriter(file, true);
@@ -78,25 +73,23 @@ public class DatabaseWriter {
             ArrayList<Defense> list = tele.getList();
             String info="";
             for(int i = 0; i < list.size(); i++){
-                String addition = list.get(i).getName() + " (BC:" + list.get(i).getBreachCount() + ", E:" + list.get(i).getEffectiveness();
+                String addition = list.get(i).getName() + "-BC:" + list.get(i).getBreachCount() + " E:" + list.get(i).getEffectiveness()+" ";
                 info+=addition;
             }
 
             if(file.length()==0){
                 writer.write(Key_Team + comma + Key_Num + comma + Key_S_Name + comma + Key_Def + comma + Key_DefAuto + comma + Key_ReachDef + comma + Key_ShotsHiAuto + comma
-                        +Key_ShotsLowAuto + comma + Key_ShotsHiTele + comma + Key_ShotsHiTele + comma + Key_ShotsLowTele + comma + Key_DefStatus + comma +
-                Key_DefStatus + comma + Key_TowerBreach + comma + Key_TowerClimb + comma + Key_Comments);
+                        +Key_ShotsLowAuto + comma + Key_ShotsHiTele + comma + Key_ShotsHiTele + comma + Key_ShotsLowTele + comma + Key_DefStatus +
+                        comma + Key_TowerBreach + comma + Key_TowerClimb + comma + Key_Comments);
                 Log.i("tag", "We created the header");
+                newLine();
             }
 
             writer.write(intro.getTeamNum() + comma + intro.getMatchNum() + comma + intro.getScoutName() + comma + auto.getDefenses()
             +comma + auto.getBreach() + comma + auto.isPastDefense() + comma + auto.getShotsMadeHigh() + comma + auto.getShotsMadeLow()
                     + comma + tele.getShotsHigh() + comma + tele.getShotsLow() + comma + info + comma + tele.getTowerBreach() + comma + tele.getTowerClimb()
                 + comma + post.getComments());
-
-            
-
-
+            newLine();
 
 
             writer.flush();
@@ -104,6 +97,7 @@ public class DatabaseWriter {
 
         }catch (Exception e){
             e.printStackTrace();
+            Log.e("tag", "Something went horribly wrong +\n " + e.toString());
         }
     }
 }
