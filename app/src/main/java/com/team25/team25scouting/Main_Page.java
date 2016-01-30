@@ -71,6 +71,8 @@ public class Main_Page extends Fragment {
                             Log.i("tag", "Directory not CREATED");
                         }
                     }
+
+                    //Writing file
                     File file = new File(directory, "ScoutingInfo.csv");
                     if(file.length() > 0){
                         Intent share = new Intent();
