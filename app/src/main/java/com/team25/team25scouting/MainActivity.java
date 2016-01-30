@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }else{
             Log.i("tag","Went to SuperOnBackPressed");
+            getFragmentManager().popBackStack();
             super.onBackPressed();
         }
     }
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initialize(){
+        getFragmentManager().popBackStack();
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, mainPage, "main")
@@ -161,11 +163,7 @@ public class MainActivity extends AppCompatActivity {
         team = new Team(intro, auto, teleOp, pg);
         DatabaseWriter writer = new DatabaseWriter(team);
         writer.write();
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.content, mainPage, "main")
-                .addToBackStack(null)
-                .commit();
+        initialize();
     }
 
 }

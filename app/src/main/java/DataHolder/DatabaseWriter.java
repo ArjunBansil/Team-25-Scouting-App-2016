@@ -32,6 +32,8 @@ public class DatabaseWriter {
     private static String Key_ShotsHiTele = "Shots Made High (TeleOp)";
     private static String Key_ShotsLowTele = "Shots Made Low (TeleOp)";
     private static String Key_DefStatus = "Defenses Breached/Effectiveness (TeleOp)";
+    private static String Key_DefPresent = "Defenses Present on the Field";
+    private static String Key_ScoringLoc = "Scoring Locations";
     private static String Key_TowerBreach = "Tower Breach";
     private static String Key_TowerClimb = "Tower Climb";
     private static String Key_Comments = "Comments";
@@ -53,7 +55,6 @@ public class DatabaseWriter {
         }catch(IOException e){
             Log.i("tag", "IOException Occurred at New Line");
         }
-
     }
 
     public void write(){
@@ -73,21 +74,39 @@ public class DatabaseWriter {
             ArrayList<Defense> list = tele.getList();
             String info="";
             for(int i = 0; i < list.size(); i++){
-                String addition = list.get(i).getName() + "-BC:" + list.get(i).getBreachCount() + " E:" + list.get(i).getEffectiveness()+" ";
-                info+=addition;
+                if(list.get(i).getEffectiveness() != 0 && list.get(i).getBreachCount() != 0){
+                    String name = list.get(i).getName();
+                    name.replace(" ", "-");
+                    String addition = name + "-BC:" + list.get(i).getBreachCount() + " E:" + list.get(i).getEffectiveness()+" ";
+                    info+=addition;
+                }
+            }
+
+            String f ="";
+            for(int i = 0; i<list.size(); i++){
+                int j = list.size()-i;
+                String name = list.get(i).getName();
+                name.replace(" ", "-");
+                if(j == 1){
+                    f+=name;
+                }else {
+                    f+=name + " ";
+                }
             }
 
             if(file.length()==0){
                 writer.write(Key_Team + comma + Key_Num + comma + Key_S_Name + comma + Key_Def + comma + Key_DefAuto + comma + Key_ReachDef + comma + Key_ShotsHiAuto + comma
-                        +Key_ShotsLowAuto + comma + Key_ShotsHiTele + comma + Key_ShotsHiTele + comma + Key_ShotsLowTele + comma + Key_DefStatus +
-                        comma + Key_TowerBreach + comma + Key_TowerClimb + comma + Key_Comments);
+                        +Key_ShotsLowAuto + comma + Key_ShotsHiTele + comma + Key_ShotsLowTele + comma + Key_DefStatus + comma +
+                        Key_DefPresent + comma + Key_ScoringLoc + comma + Key_TowerBreach + comma +Key_TowerClimb +
+                        comma + Key_Comments);
                 Log.i("tag", "We created the header");
                 newLine();
             }
 
             writer.write(intro.getTeamNum() + comma + intro.getMatchNum() + comma + intro.getScoutName() + comma + auto.getDefenses()
             +comma + auto.getBreach() + comma + auto.isPastDefense() + comma + auto.getShotsMadeHigh() + comma + auto.getShotsMadeLow()
-                    + comma + tele.getShotsHigh() + comma + tele.getShotsLow() + comma + info + comma + tele.getTowerBreach() + comma + tele.getTowerClimb()
+                    + comma + tele.getShotsHigh() + comma + tele.getShotsLow() + comma + info + comma + f + comma
+                    +tele.getScoringLoc() +  comma + tele.getTowerBreach() + comma + tele.getTowerClimb()
                 + comma + post.getComments());
             newLine();
 

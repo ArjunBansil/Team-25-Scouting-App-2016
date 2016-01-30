@@ -6,6 +6,7 @@
 
 
     <application
+        android:screenOrientation="portrait"
         android:allowBackup="true"
         android:exported="true"
         android:icon="@mipmap/ic_launcher"

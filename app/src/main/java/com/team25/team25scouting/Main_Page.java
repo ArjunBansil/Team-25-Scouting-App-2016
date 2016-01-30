@@ -2,6 +2,7 @@ package com.team25.team25scouting;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,26 +10,20 @@ import android.app.Fragment;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Main_Page.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Main_Page#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Main_Page extends Fragment {
 
     CardView sharing, delete;
@@ -55,6 +50,7 @@ public class Main_Page extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_main, container, false);
+        getActivity().setTitle("Main Page");
         ImageView img = (ImageView)view.findViewById(R.id.sharingPic);
         ImageView img2 = (ImageView)view.findViewById(R.id.deletePic);
         sharing = (CardView)view.findViewById(R.id.sharing);
@@ -88,8 +84,20 @@ public class Main_Page extends Fragment {
                     }
                 }catch (Exception e){
                     e.printStackTrace();
-                    Snackbar.make(view, "File is not created", Snackbar.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(view, "File is not long enough, or it doesn't exist", Snackbar.LENGTH_SHORT);
+                    View temp = snackbar.getView();
+                    TextView t = (TextView)view.findViewById(android.support.design.R.id.snackbar_text);
+                    t.setTextColor(Color.RED);
+                    snackbar.show();
                 }
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PasswordEntry p = new PasswordEntry();
+                p.show(getFragmentManager().beginTransaction(), "Confirm Password");
             }
         });
 
