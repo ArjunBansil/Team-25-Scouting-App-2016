@@ -13,8 +13,11 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import DataHolder.Defense;
@@ -92,6 +95,104 @@ public class Gen_info extends Fragment {
             });
         }
 
+        cheval.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    if(p_culli.isChecked()){
+                        Toast.makeText(buttonView.getContext(), "Can't choose another Category A defense", Toast.LENGTH_SHORT).show();
+                    }
+                    p_culli.setChecked(false);
+                }
+            }
+        });
+
+        p_culli.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    if (cheval.isChecked()) {
+                        Toast.makeText(buttonView.getContext(), "Can't choose another Category A defense", Toast.LENGTH_SHORT).show();
+                    }
+                    cheval.setChecked(false);
+                }
+            }
+        });
+
+        moat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    if(ramp.isChecked()){
+                        Toast.makeText(buttonView.getContext(), "Can't choose another Category B defense", Toast.LENGTH_SHORT).show();
+                    }
+                    ramp.setChecked(false);
+                }
+            }
+        });
+
+        ramp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    if(moat.isChecked()){
+                        Toast.makeText(buttonView.getContext(), "Can't choose another Category B defense", Toast.LENGTH_SHORT).show();
+                    }
+                    moat.setChecked(false);
+                }
+            }
+        });
+
+        d_bridge.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    if(s_port.isChecked()){
+                        Toast.makeText(buttonView.getContext(), "Can't choose another Category C defense", Toast.LENGTH_SHORT).show();
+                    }
+                    s_port.setChecked(false);
+                }
+            }
+        });
+
+        s_port.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    if(d_bridge.isChecked()){
+                        Toast.makeText(buttonView.getContext(), "Can't choose another Category C defense", Toast.LENGTH_SHORT).show();
+                    }
+                    d_bridge.setChecked(false);
+                }
+            }
+        });
+
+        r_wall.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    if(r_terrain.isChecked()){
+                        Toast.makeText(buttonView.getContext(), "Can't choose another Category D defense", Toast.LENGTH_SHORT).show();
+                    }
+                    r_terrain.setChecked(false);
+                }
+            }
+        });
+
+        r_terrain.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    if(r_wall.isChecked()){
+                        Toast.makeText(buttonView.getContext(), "Can't choose another Category D defense", Toast.LENGTH_SHORT).show();
+                    }
+                    r_wall.setChecked(false);
+                }
+            }
+        });
+
+
+
 
         go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,13 +225,7 @@ public class Gen_info extends Fragment {
                     c_boxes.add(s_port);
 
                     ArrayList<Defense> d_list = new ArrayList<Defense>();
-                    /*
-                    DefenseList d = new DefenseList(v.getContext());
-                    d_list = d.getD_list();
-                    for(int i = 0; i<d_list.size(); i++){
-                        Log.i("tag", d_list.get(i).getName());
-                    }
-                    */
+
                     for(int i = 0; i < c_boxes.size(); i++){
                         if(c_boxes.get(i).isChecked()){
                             Defense temp = new Defense(c_boxes.get(i).getText().toString(),

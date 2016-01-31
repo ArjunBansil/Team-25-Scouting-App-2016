@@ -82,7 +82,9 @@ public class DefenseAdapter extends RecyclerView.Adapter<DefenseAdapter.DefenseV
             @Override
             public void onClick(View v) {
                 int b = d.getBreachCount();
-                list.get(count).setBreachCount(b-1);
+                if(b>0){
+                    list.get(count).setBreachCount(b-1);
+                }
                 holder.b_count.setText(list.get(count).getBreachCount()+"");
             }
         });
