@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Auto_Fragment af = Auto_Fragment.newInstance();
     private TeleOpFragment tele = TeleOpFragment.newInstance();
     private PostGameFrag post = PostGameFrag.newInstance();
+    private Rule_Fragment rf = null;
     private Autonomous auto = null;
     private Intro intro = null;
     private TeleOp teleOp = null;
@@ -72,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
 
+    }
+
+    public void goToRules(){
+        rf = Rule_Fragment.newInstance();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, rf, "Rule")
+                .addToBackStack(null)
+                .commit();
     }
 
     public void setUpD_List(){
@@ -140,17 +150,28 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.content, tele)
                     .addToBackStack(null)
                     .commit();
+        }else if(rf!=null){
+            Log.i("tag", "In Rules Fragment");
+            rf = null;
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.content, mainPage)
+                    .addToBackStack(null)
+                    .commit();
         }else{
             Log.i("tag","Went to SuperOnBackPressed");
-            getFragmentManager().popBackStack();
+            getFragmentManager().popBackStackImmediate(null, getFragmentManager().POP_BACK_STACK_INCLUSIVE);
             super.onBackPressed();
         }
     }
 
-
-
     private void initialize(){
-        getFragmentManager().popBackStack();
+        getFragmentManager().popBackStackImmediate(null, getFragmentManager().POP_BACK_STACK_INCLUSIVE);
+        tele = TeleOpFragment.newInstance();
+        post = PostGameFrag.newInstance();
+        af = Auto_Fragment.newInstance();
+        genInfo = Gen_info.newInstance();
+
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content, mainPage, "main")
@@ -161,7 +182,12 @@ public class MainActivity extends AppCompatActivity {
     public void finish(PostGame p){
         this.pg = p;
         team = new Team(intro, auto, teleOp, pg);
-        DatabaseWriter writer = new DatabaseWriter(team);
+        DatabaseWriter writer = new DatabaseWriter(team, getApplicationContext());
+        intro = null;
+        auto = null;
+        teleOp = null;
+        pg = null;
+
         writer.write();
         initialize();
     }

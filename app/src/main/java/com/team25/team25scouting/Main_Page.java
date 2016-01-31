@@ -26,7 +26,7 @@ import java.io.InputStream;
 
 public class Main_Page extends Fragment {
 
-    CardView sharing, delete;
+    CardView sharing, delete, rules;
 
 
     private OnFragmentInteractionListener mListener;
@@ -53,8 +53,11 @@ public class Main_Page extends Fragment {
         getActivity().setTitle("Main Page");
         ImageView img = (ImageView)view.findViewById(R.id.sharingPic);
         ImageView img2 = (ImageView)view.findViewById(R.id.deletePic);
+        ImageView img3 = (ImageView)view.findViewById(R.id.rulePic);
         sharing = (CardView)view.findViewById(R.id.sharing);
         delete = (CardView)view.findViewById(R.id.delete);
+        rules = (CardView)view.findViewById(R.id.rules);
+        final MainActivity ma = (MainActivity)getActivity();
 
         sharing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +75,6 @@ public class Main_Page extends Fragment {
                         }
                     }
 
-                    //Writing file
                     File file = new File(directory, "ScoutingInfo.csv");
                     if(file.length() > 0){
                         Intent share = new Intent();
@@ -82,6 +84,7 @@ public class Main_Page extends Fragment {
                         Intent chooser = Intent.createChooser(share, "Scouting App");
                         startActivity(chooser);
                     }else{
+                        Log.e("tag", "File doesn't exist");
                         Snackbar.make(view, "File is not long enough or not created", Snackbar.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
@@ -103,8 +106,14 @@ public class Main_Page extends Fragment {
             }
         });
 
+        rules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ma.goToRules();
+            }
+        });
+
         FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.addRecord);
-        final MainActivity ma = (MainActivity)getActivity();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,12 +132,13 @@ public class Main_Page extends Fragment {
             d = Drawable.createFromStream(ims, null);
             img2.setImageDrawable(d);
 
+            ims = view.getContext().getAssets().open("rules.jpg");
+            d = Drawable.createFromStream(ims, null);
+            img3.setImageDrawable(d);
+
         }catch (IOException e){
             e.printStackTrace();
         }
-
-
-
         return view;
     }
 
@@ -159,7 +169,6 @@ public class Main_Page extends Fragment {
 
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
