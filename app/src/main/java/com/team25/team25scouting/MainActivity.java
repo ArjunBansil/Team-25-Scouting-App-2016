@@ -187,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
         auto = null;
         teleOp = null;
         pg = null;
-
         writer.write();
         initialize();
     }

@@ -65,7 +65,6 @@ public class Auto_Fragment extends Fragment {
             temp.add(list.get(i).getName());
         }
         sp = (Spinner)view.findViewById(R.id.defenseContainer);
-        sp.setVisibility(View.INVISIBLE);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext()
                 , android.R.layout.simple_spinner_item, temp);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -98,18 +97,6 @@ public class Auto_Fragment extends Fragment {
                 } else {
                     breach.setVisibility(View.INVISIBLE);
                     breach.setChecked(false);
-                    sp.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        breach.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    sp.setVisibility(View.VISIBLE);
-                }else {
-                    sp.setVisibility(View.INVISIBLE);
                 }
             }
         });

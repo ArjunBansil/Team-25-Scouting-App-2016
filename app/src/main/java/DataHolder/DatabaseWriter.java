@@ -77,7 +77,7 @@ public class DatabaseWriter {
             Log.i("tag", "IOException Occurred at New Line");
         }
     }
-
+    /*
     public void write(){
         try{
             File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Scouting App");
@@ -140,51 +140,85 @@ public class DatabaseWriter {
             Log.e("tag", "Something went horribly wrong +\n " + e.toString());
         }
     }
+    */
 
-    public void write(boolean b) throws Exception{
-        File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Scouting App");
-        if(!directory.exists()){
-            directory.mkdir();
-            Log.i("tag", "Directoy has been created holmes");
-        }else {
-            Log.i("tag", "Directory is already here fam");
-        }
-        File file = new File(directory, "ScoutingInfoTest.csv");
-        Log.i("tag", "File is created");
-        writer = new FileWriter(file, true);
-        Log.i("tag", "We created all of the stuff");
-
-        ArrayList<Defense> list = tele.getList();
-
-        ArrayList<Defense> f_list = new ArrayList<Defense>();
-        f_list.add(new Defense("Cheval de Frise", 0,0,context));
-        f_list.add(new Defense("Drawbridge", 0,0,context));
-        f_list.add(new Defense("Moat", 0,0,context));
-        f_list.add(new Defense("Portculli",0,0,context ));
-        f_list.add(new Defense("Ramparts",0,0, context));
-        f_list.add(new Defense("Rock Wall", 0,0, context));
-        f_list.add(new Defense("Rough Terrain",0,0,context));
-        f_list.add(new Defense("Sally Port",0,0,context));
-
-        for(int i = 0; i< f_list.size();i++){
-            Defense temp = f_list.get(i);
-            for(int j = 0; j < list.size(); j++){
-
+    public void write(){
+        try{
+            File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Scouting App");
+            if(!directory.exists()){
+                directory.mkdir();
+                Log.i("tag", "Directoy has been created holmes");
+            }else {
+                Log.i("tag", "Directory is already here fam");
             }
-        }
+            File file = new File(directory, "ScoutingInfo.csv");
+            Log.i("tag", "File is created");
+            writer = new FileWriter(file, true);
+            Log.i("tag", "We created all of the stuff");
 
-        if(file.length()==0){
-            writer.write(Key_Team + comma + Key_Num + comma + Key_S_Name + comma + Key_Def + comma + Key_DefAuto + comma + Key_ReachDef +
-                    comma + Key_ShotsHiAuto + comma + cheval_B + comma + cheval_E + comma + d_bridge_B + comma + d_bridge_E + comma
-                    + moat_b + comma + moat_e + comma + p_culli_b + comma + p_culli_e + comma + rampart_b + comma + rampart_e + comma +
-                    r_wall_b + comma + r_wall_e + comma + r_terrain_b + comma + r_terrain_e + comma + s_port_b + comma + s_port_e + comma +
-                    l_bar_B + comma + l_bar_E + comma + Key_ShotsLowAuto + comma + Key_ShotsHiTele + comma + Key_ShotsLowTele + comma +
-                    comma + Key_ScoringLoc + comma + Key_TowerBreach + comma +Key_TowerClimb + comma + Key_Comments);
+            ArrayList<Defense> list = tele.getList();
+
+            ArrayList<Defense> f_list = new ArrayList<Defense>();
+            f_list.add(new Defense("Cheval de Frise", 0,0,context));
+            f_list.add(new Defense("Drawbridge", 0,0,context));
+            f_list.add(new Defense("Moat", 0,0,context));
+            f_list.add(new Defense("Portculli",0,0,context ));
+            f_list.add(new Defense("Ramparts",0,0, context));
+            f_list.add(new Defense("Rock Wall", 0,0, context));
+            f_list.add(new Defense("Rough Terrain",0,0,context));
+            f_list.add(new Defense("Sally Port",0,0,context));
+            f_list.add(new Defense("Low Bar",0,0,context));
+
+            for(int i = 0; i< f_list.size();i++){
+                Defense temp = f_list.get(i);
+                for(int j = 0; j < list.size(); j++){
+                    if(list.get(j).getName().equals(temp.getName())){
+                        f_list.get(i).setEffectiveness(list.get(j).getEffectiveness());
+                        f_list.get(i).setBreachCount(list.get(j).getBreachCount());
+                    }
+                }
+            }
+
+            String info = "";
+
+            for(int i = 0;i<f_list.size();i++){
+                int bc = f_list.get(i).getBreachCount();
+                int e = f_list.get(i).getEffectiveness();
+                info+=bc+","+e+",";
+            }
+
+            if(file.length()==0){
+                writer.write(Key_Team + comma + Key_Num + comma + Key_S_Name + comma + Key_Def + comma + Key_DefAuto + comma + Key_ReachDef +
+                        comma + Key_ShotsHiAuto + comma + Key_ShotsLowAuto + comma + Key_ShotsHiTele + comma + Key_ShotsLowTele + comma +
+                        cheval_B + comma + cheval_E + comma + d_bridge_B + comma + d_bridge_E + comma
+                        + moat_b + comma + moat_e + comma + p_culli_b + comma + p_culli_e + comma + rampart_b + comma + rampart_e + comma +
+                        r_wall_b + comma + r_wall_e + comma + r_terrain_b + comma + r_terrain_e + comma + s_port_b + comma + s_port_e + comma +
+                        l_bar_B + comma + l_bar_E + comma + Key_ScoringLoc + comma + Key_TowerBreach + comma +Key_TowerClimb + comma +
+                        Key_Comments);
+                newLine();
+            }
+
+
+            writer.write(intro.getTeamNum() + comma + intro.getMatchNum() + comma + intro.getScoutName() + comma + auto.getDefenses() + comma
+                    + auto.getBreach() + comma +  auto.isPastDefense() + comma + auto.getShotsMadeHigh() + comma + auto.getShotsMadeLow() + comma
+                    + tele.getShotsHigh() + comma + tele.getShotsLow() + comma +info + tele.getScoringLoc() + comma +
+                    option(tele.getTowerBreach()) + comma + option(tele.getTowerClimb()) + comma + post.getComments());
+
             newLine();
+
+            writer.flush();
+            writer.close();
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
+    }
 
-
-
+    private String option(boolean b){
+        if(b){
+            return "Yes";
+        }else{
+            return "no";
+        }
     }
 }
