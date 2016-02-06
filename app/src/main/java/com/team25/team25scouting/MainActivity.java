@@ -7,11 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.util.ArrayList;
-
 import DataHolder.Autonomous;
 import DataHolder.DatabaseWriter;
 import DataHolder.Defense;
@@ -129,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.content, mainPage)
                     .addToBackStack(null)
                     .commit();
-        }else if(getFragmentManager().findFragmentByTag("main")!=null && getFragmentManager().findFragmentByTag("TeleOp") ==null){
+        }else if((getFragmentManager().findFragmentByTag("main")!=null && getFragmentManager().findFragmentByTag("Auto") !=null) ||  getFragmentManager().findFragmentByTag("TeleOp") ==null){
             Log.i("tag", "In Autonomous Fragment");
             getFragmentManager()
                     .beginTransaction()
