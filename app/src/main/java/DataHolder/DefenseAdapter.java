@@ -43,7 +43,6 @@ public class DefenseAdapter extends RecyclerView.Adapter<DefenseAdapter.DefenseV
         final Defense d = list.get(i);
         final DefenseViewHolder holder = dH;
 
-
         ArrayList<String> ratingList = new ArrayList<String>();
         ratingList.add("0");
         ratingList.add("1");
@@ -51,8 +50,8 @@ public class DefenseAdapter extends RecyclerView.Adapter<DefenseAdapter.DefenseV
         ratingList.add("3");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(dH.context,
                 android.R.layout.simple_spinner_item, ratingList);
-        dH.sp.setAdapter(adapter);
-        dH.sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        holder.sp.setAdapter(adapter);
+        holder.sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
@@ -66,19 +65,26 @@ public class DefenseAdapter extends RecyclerView.Adapter<DefenseAdapter.DefenseV
         });
 
 
-        dH.title.setText(d.getName());
-        dH.pic.setImageBitmap(d.returnBitmap());
-        dH.inc.setOnClickListener(new View.OnClickListener() {
+        holder.title.setText(d.getName());
+        holder.pic.setImageBitmap(d.returnBitmap());
+        holder.inc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int b = d.getBreachCount();
                 list.get(count).setBreachCount(b+1);
                 holder.b_count.setText(list.get(count).getBreachCount() + "");
+                if(holder.sp.getSelectedItem().toString().equals("0") && list.get(count).getBreachCount() == 1){
+                    holder.sp.setSelection(1, true);
+                }else if(holder.sp.getSelectedItem().toString().equals("1") && list.get(count).getBreachCount() == 2){
+                    holder.sp.setSelection(2, true);
+                }else if(holder.sp.getSelectedItem().toString().equals("2") && list.get(count).getBreachCount() == 3){
+                    holder.sp.setSelection(3, true);
+                }
             }
 
         });
 
-        dH.dec.setOnClickListener(new View.OnClickListener() {
+        holder.dec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int b = d.getBreachCount();
@@ -86,6 +92,9 @@ public class DefenseAdapter extends RecyclerView.Adapter<DefenseAdapter.DefenseV
                     list.get(count).setBreachCount(b-1);
                 }
                 holder.b_count.setText(list.get(count).getBreachCount()+"");
+                if(Integer.parseInt(holder.sp.getSelectedItem().toString()) > 0 && list.get(count).getBreachCount() == 0 ){
+                    holder.sp.setSelection(0, true);
+                }
             }
         });
 

@@ -7,6 +7,7 @@ public class PostGame implements Serializable{
 
     public PostGame(String c){
         this.comments = c;
+        this.comments = comments.replace(",", " ");
     }
 
     public String getComments(){

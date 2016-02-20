@@ -64,6 +64,7 @@ public class Auto_Fragment extends Fragment {
         for(int i = 0; i<list.size(); i++){
             temp.add(list.get(i).getName());
         }
+
         sp = (Spinner)view.findViewById(R.id.defenseContainer);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext()
                 , android.R.layout.simple_spinner_item, temp);

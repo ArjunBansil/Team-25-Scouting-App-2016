@@ -1,5 +1,6 @@
 package com.team25.team25scouting;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -7,6 +8,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import DataHolder.Autonomous;
@@ -39,6 +45,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initialize();
+
+        HomeWatcher watcher = new HomeWatcher(this);
+        watcher.setOnHomePressedListener(new OnHomePressedListener() {
+            @Override
+            public void onHomePressed() {
+                Log.i("homo", "Home Button Pressed");
+                LeaveConfirmation l = new LeaveConfirmation();
+                l.show(getFragmentManager().beginTransaction(), "Confirm Leaving");
+            }
+
+            @Override
+            public void onHomeLongPressed() {
+
+            }
+        });
     }
 
     public void goToGen(){
@@ -119,7 +140,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        if(getFragmentManager().findFragmentByTag("main") != null && getFragmentManager().findFragmentByTag("Auto")==null){
+        if(getFragmentManager().findFragmentByTag("main") != null && getFragmentManager().findFragmentByTag("General") == null){
+            Log.i("tag", "In Main Page");
+            LeaveConfirmation l = new LeaveConfirmation();
+            l.show(getFragmentManager().beginTransaction(), "Confirm Leaving");
+
+        }
+        else if(getFragmentManager().findFragmentByTag("main") != null && getFragmentManager().findFragmentByTag("Auto")==null){
             Log.i("tag", "In General Fragment");
             getFragmentManager()
                     .beginTransaction()
@@ -184,8 +211,14 @@ public class MainActivity extends AppCompatActivity {
         auto = null;
         teleOp = null;
         pg = null;
+        View view = this.getCurrentFocus();
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         writer.write();
         initialize();
     }
+
+
+
 
 }

@@ -77,7 +77,7 @@ public class DatabaseWriter {
             Log.i("tag", "IOException Occurred at New Line");
         }
     }
-    /*
+
     public void write(){
         try{
             File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Scouting App");
@@ -93,70 +93,15 @@ public class DatabaseWriter {
             Log.i("tag", "We created all of the stuff");
 
             ArrayList<Defense> list = tele.getList();
-            String info="";
+
+            String defPresent = "";
+
             for(int i = 0; i < list.size(); i++){
-                if(list.get(i).getEffectiveness() != 0 && list.get(i).getBreachCount() != 0){
-                    String name = list.get(i).getName();
-                    name.replace(" ", "-");
-                    String addition = name + "-BC:" + list.get(i).getBreachCount() + " E:" + list.get(i).getEffectiveness()+" ";
-                    info+=addition;
-                }
+                defPresent+=list.get(i).getName() + "-";
             }
 
-            String f ="";
-            for(int i = 0; i<list.size(); i++){
-                int j = list.size()-i;
-                String name = list.get(i).getName();
-                name.replace(" ", "-");
-                if(j == 1){
-                    f+=name;
-                }else {
-                    f+=name + " ";
-                }
-            }
-
-            if(file.length()==0){
-                writer.write(Key_Team + comma + Key_Num + comma + Key_S_Name + comma + Key_Def + comma + Key_DefAuto + comma + Key_ReachDef + comma + Key_ShotsHiAuto + comma
-                        +Key_ShotsLowAuto + comma + Key_ShotsHiTele + comma + Key_ShotsLowTele + comma + Key_DefStatus + comma +
-                        Key_DefPresent + comma + Key_ScoringLoc + comma + Key_TowerBreach + comma +Key_TowerClimb +
-                        comma + Key_Comments);
-                Log.i("tag", "We created the header");
-                newLine();
-            }
-
-            writer.write(intro.getTeamNum() + comma + intro.getMatchNum() + comma + intro.getScoutName() + comma + auto.getDefenses()
-            +comma + auto.getBreach() + comma + auto.isPastDefense() + comma + auto.getShotsMadeHigh() + comma + auto.getShotsMadeLow()
-                    + comma + tele.getShotsHigh() + comma + tele.getShotsLow() + comma + info + comma + f + comma
-                    +tele.getScoringLoc() +  comma + tele.getTowerBreach() + comma + tele.getTowerClimb()
-                + comma + post.getComments());
-            newLine();
-
-
-            writer.flush();
-            writer.close();
-
-        }catch (Exception e){
-            e.printStackTrace();
-            Log.e("tag", "Something went horribly wrong +\n " + e.toString());
-        }
-    }
-    */
-
-    public void write(){
-        try{
-            File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Scouting App");
-            if(!directory.exists()){
-                directory.mkdir();
-                Log.i("tag", "Directoy has been created holmes");
-            }else {
-                Log.i("tag", "Directory is already here fam");
-            }
-            File file = new File(directory, "ScoutingInfo.csv");
-            Log.i("tag", "File is created");
-            writer = new FileWriter(file, true);
-            Log.i("tag", "We created all of the stuff");
-
-            ArrayList<Defense> list = tele.getList();
+            int a = defPresent.length();
+            defPresent = defPresent.substring(0, a-1);
 
             ArrayList<Defense> f_list = new ArrayList<Defense>();
             f_list.add(new Defense("Cheval de Frise", 0,0,context));
@@ -193,15 +138,15 @@ public class DatabaseWriter {
                         cheval_B + comma + cheval_E + comma + d_bridge_B + comma + d_bridge_E + comma
                         + moat_b + comma + moat_e + comma + p_culli_b + comma + p_culli_e + comma + rampart_b + comma + rampart_e + comma +
                         r_wall_b + comma + r_wall_e + comma + r_terrain_b + comma + r_terrain_e + comma + s_port_b + comma + s_port_e + comma +
-                        l_bar_B + comma + l_bar_E + comma + Key_ScoringLoc + comma + Key_TowerBreach + comma +Key_TowerClimb + comma +
+                        l_bar_B + comma + l_bar_E + comma + Key_DefPresent + comma+ Key_ScoringLoc + comma + Key_TowerBreach + comma +Key_TowerClimb + comma +
                         Key_Comments);
                 newLine();
             }
 
 
             writer.write(intro.getTeamNum() + comma + intro.getMatchNum() + comma + intro.getScoutName() + comma + auto.getDefenses() + comma
-                    + auto.getBreach() + comma +  auto.isPastDefense() + comma + auto.getShotsMadeHigh() + comma + auto.getShotsMadeLow() + comma
-                    + tele.getShotsHigh() + comma + tele.getShotsLow() + comma +info + tele.getScoringLoc() + comma +
+                    + option(auto.getBreach()) + comma +  option(auto.isPastDefense()) + comma + auto.getShotsMadeHigh() + comma + auto.getShotsMadeLow() + comma
+                    + tele.getShotsHigh() + comma + tele.getShotsLow() + comma +info + defPresent + comma + tele.getScoringLoc() + comma +
                     option(tele.getTowerBreach()) + comma + option(tele.getTowerClimb()) + comma + post.getComments());
 
             newLine();
