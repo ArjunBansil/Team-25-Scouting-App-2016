@@ -17,7 +17,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import DataHolder.Defense;
@@ -76,24 +75,6 @@ public class Gen_info extends Fragment {
         c_boxes.add(r_terrain);
         c_boxes.add(s_port);
 
-        for (int i = 0; i < c_boxes.size(); i++){
-            final int count = i;
-            c_boxes.get(i).setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    String temp = c_boxes.get(count).getText().toString();
-                    String file = temp + ".png";
-                    try{
-                        InputStream ims = v.getContext().getAssets().open(file);
-                        Drawable d = Drawable.createFromStream(ims, null);
-                        img.setImageDrawable(d);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    return true;
-                }
-            });
-        }
 
         cheval.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -103,7 +84,15 @@ public class Gen_info extends Fragment {
                         Toast.makeText(buttonView.getContext(), "Can't choose another Category A defense", Toast.LENGTH_SHORT).show();
                     }
                     p_culli.setChecked(false);
+                    try{
+                        InputStream ims = view.getContext().getAssets().open(cheval.getText().toString() + ".png");
+                        Drawable d = Drawable.createFromStream(ims, null);
+                        img.setImageDrawable(d);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
+
             }
         });
 
@@ -115,6 +104,13 @@ public class Gen_info extends Fragment {
                         Toast.makeText(buttonView.getContext(), "Can't choose another Category A defense", Toast.LENGTH_SHORT).show();
                     }
                     cheval.setChecked(false);
+                    try{
+                        InputStream ims = view.getContext().getAssets().open(p_culli.getText().toString() + ".png");
+                        Drawable d = Drawable.createFromStream(ims, null);
+                        img.setImageDrawable(d);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -127,6 +123,13 @@ public class Gen_info extends Fragment {
                         Toast.makeText(buttonView.getContext(), "Can't choose another Category B defense", Toast.LENGTH_SHORT).show();
                     }
                     ramp.setChecked(false);
+                    try{
+                        InputStream ims = view.getContext().getAssets().open(moat.getText().toString()+".png");
+                        Drawable d = Drawable.createFromStream(ims, null);
+                        img.setImageDrawable(d);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -139,6 +142,13 @@ public class Gen_info extends Fragment {
                         Toast.makeText(buttonView.getContext(), "Can't choose another Category B defense", Toast.LENGTH_SHORT).show();
                     }
                     moat.setChecked(false);
+                    try{
+                        InputStream ims = view.getContext().getAssets().open(ramp.getText().toString()+".png");
+                        Drawable d = Drawable.createFromStream(ims, null);
+                        img.setImageDrawable(d);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -151,6 +161,13 @@ public class Gen_info extends Fragment {
                         Toast.makeText(buttonView.getContext(), "Can't choose another Category C defense", Toast.LENGTH_SHORT).show();
                     }
                     s_port.setChecked(false);
+                    try{
+                        InputStream ims = view.getContext().getAssets().open(d_bridge.getText().toString() + ".png");
+                        Drawable d = Drawable.createFromStream(ims, null);
+                        img.setImageDrawable(d);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -163,6 +180,13 @@ public class Gen_info extends Fragment {
                         Toast.makeText(buttonView.getContext(), "Can't choose another Category C defense", Toast.LENGTH_SHORT).show();
                     }
                     d_bridge.setChecked(false);
+                    try{
+                        InputStream ims = view.getContext().getAssets().open(s_port.getText().toString()+".png");
+                        Drawable d = Drawable.createFromStream(ims, null);
+                        img.setImageDrawable(d);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -175,6 +199,13 @@ public class Gen_info extends Fragment {
                         Toast.makeText(buttonView.getContext(), "Can't choose another Category D defense", Toast.LENGTH_SHORT).show();
                     }
                     r_terrain.setChecked(false);
+                    try{
+                        InputStream ims = view.getContext().getAssets().open(r_wall.getText().toString()+".png");
+                        Drawable d = Drawable.createFromStream(ims, null);
+                        img.setImageDrawable(d);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -187,12 +218,16 @@ public class Gen_info extends Fragment {
                         Toast.makeText(buttonView.getContext(), "Can't choose another Category D defense", Toast.LENGTH_SHORT).show();
                     }
                     r_wall.setChecked(false);
+                    try{
+                        InputStream ims = view.getContext().getAssets().open(r_terrain.getText().toString()+".png");
+                        Drawable d = Drawable.createFromStream(ims, null);
+                        img.setImageDrawable(d);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });
-
-
-
 
         go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,6 +242,8 @@ public class Gen_info extends Fragment {
                     Snackbar.make(view, "Fill in everything", Snackbar.LENGTH_SHORT).show();
                 }else if(count != 4){
                     Snackbar.make(view, "Select 4 defenses", Snackbar.LENGTH_SHORT).show();
+                }else if(teamNum.getText().toString().isEmpty() || matchNum.getText().toString().isEmpty()){
+                    Snackbar.make(view, "It's empty", Snackbar.LENGTH_SHORT).show();
                 }
                 else{
                     Log.i("tag", teamNum.getText().toString() + " " + s_name.getText().toString() + " " + matchNum.getText().toString());

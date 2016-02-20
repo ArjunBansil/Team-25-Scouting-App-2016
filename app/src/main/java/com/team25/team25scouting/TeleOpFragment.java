@@ -133,9 +133,11 @@ public class TeleOpFragment extends Fragment {
                 String defenses = "";
                 if(outerworks.isChecked()){
                     defenses+="Outerworks ";
-                }else if(batter.isChecked()){
+                }
+                if(batter.isChecked()){
                     defenses+="Batter ";
-                }else if(courtyard.isChecked()){
+                }
+                if(courtyard.isChecked()){
                     defenses+="Courtyard";
                 }
                 TeleOp tele = new TeleOp(shotsHigh, shotsLow, l, towerBreach.isChecked(), towerClimb.isChecked(), defenses);

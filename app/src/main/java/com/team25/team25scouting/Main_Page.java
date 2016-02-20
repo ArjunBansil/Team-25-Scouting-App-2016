@@ -32,7 +32,7 @@ public class Main_Page extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public Main_Page() {
-        // Required empty public constructor
+
     }
 
     public static Main_Page newInstance() {
@@ -103,6 +103,7 @@ public class Main_Page extends Fragment {
             public void onClick(View v) {
                 PasswordEntry p = new PasswordEntry();
                 p.show(getFragmentManager().beginTransaction(), "Confirm Password");
+
             }
         });
 
