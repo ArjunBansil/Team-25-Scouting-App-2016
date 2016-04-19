@@ -1,7 +1,9 @@
 package com.team25.team25scouting;
 
 
-import android.media.Image;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,22 +12,24 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import java.io.InputStream;
 import java.util.ArrayList;
 import DataHolder.Autonomous;
 import DataHolder.Defense;
 
 public class Auto_Fragment extends Fragment {
-    public RadioButton breach, reach;
+    public CheckBox breach, reach;
     public Spinner sp;
     public Button incHigh, incLow, decHigh, decLow, goNext;
     public TextView shotHigh, shotLow;
     public ImageView pic;
     public int shotsMadeHigh = 0, shotsMadeLow = 0;
+    public Defense s_box;
 
     public Auto_Fragment() {
 
@@ -47,8 +51,8 @@ public class Auto_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_auto, container, false);
         getActivity().setTitle("Add Record");
         pic = (ImageView)view.findViewById(R.id.def_pic);
-        breach = (RadioButton)view.findViewById(R.id.defBreach);
-        reach = (RadioButton)view.findViewById(R.id.defReach);
+        breach = (CheckBox)view.findViewById(R.id.defBreach);
+        reach = (CheckBox)view.findViewById(R.id.defReach);
         breach.setVisibility(View.INVISIBLE);
         incHigh = (Button)view.findViewById(R.id.incHigh);
         incLow = (Button)view.findViewById(R.id.incLow);
@@ -60,6 +64,16 @@ public class Auto_Fragment extends Fragment {
 
         final MainActivity ma = (MainActivity)getActivity();
         ArrayList<Defense> list = ma.d_present;
+        s_box = new Defense("Spy Box", 0, 0, getActivity().getApplicationContext());
+        try{
+            InputStream ims = getActivity().getApplicationContext().getResources().getAssets().open("Spy Box.png");
+            Drawable d = Drawable.createFromStream(ims, null);
+            Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+            s_box.setBitmap(bitmap);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        list.add(s_box);
         ArrayList<String> temp = new ArrayList<String>();
         for(int i = 0; i<list.size(); i++){
             temp.add(list.get(i).getName());
@@ -79,6 +93,8 @@ public class Auto_Fragment extends Fragment {
                 for(int i =0; i<list.size();i++ ){
                     if(list.get(i).getName().equals(parent.getSelectedItem().toString())){
                         d= list.get(i);
+                    }else if(parent.getSelectedItem().toString().equals("Spy Box")){
+                        d= s_box;
                     }
                 }
                 pic.setImageBitmap(d.returnBitmap());
@@ -86,7 +102,6 @@ public class Auto_Fragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 

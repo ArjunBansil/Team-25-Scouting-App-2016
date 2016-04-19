@@ -56,6 +56,7 @@ public class DatabaseWriter {
     private static String Key_TowerBreach = "Tower Breach";
     private static String Key_TowerClimb = "Tower Climb";
     private static String Key_Comments = "Comments";
+    private static String Key_Status = "Robot Status";
     private static String comma = ",";
     private Context context = null;
 
@@ -139,7 +140,7 @@ public class DatabaseWriter {
                         + moat_b + comma + moat_e + comma + p_culli_b + comma + p_culli_e + comma + rampart_b + comma + rampart_e + comma +
                         r_wall_b + comma + r_wall_e + comma + r_terrain_b + comma + r_terrain_e + comma + s_port_b + comma + s_port_e + comma +
                         l_bar_B + comma + l_bar_E + comma + Key_DefPresent + comma+ Key_ScoringLoc + comma + Key_TowerBreach + comma +Key_TowerClimb + comma +
-                        Key_Comments);
+                        Key_Comments + comma + Key_Status);
                 newLine();
             }
 
@@ -147,8 +148,7 @@ public class DatabaseWriter {
             writer.write(intro.getTeamNum() + comma + intro.getMatchNum() + comma + intro.getScoutName() + comma + auto.getDefenses() + comma
                     + option(auto.getBreach()) + comma +  option(auto.isPastDefense()) + comma + auto.getShotsMadeHigh() + comma + auto.getShotsMadeLow() + comma
                     + tele.getShotsHigh() + comma + tele.getShotsLow() + comma +info + defPresent + comma + tele.getScoringLoc() + comma +
-                    option(tele.getTowerBreach()) + comma + option(tele.getTowerClimb()) + comma + post.getComments());
-
+                    option(tele.getTowerBreach()) + comma + option(tele.getTowerClimb()) + comma + post.getComments() + comma + post.getStatus());
             newLine();
 
             writer.flush();
