@@ -19,7 +19,7 @@
             android:textColor="#000"
             />
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/defReach"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:textColor="#000"
             android:layout_marginTop="40dp"/>
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/defBreach"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

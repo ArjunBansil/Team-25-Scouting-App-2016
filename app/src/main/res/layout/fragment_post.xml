@@ -31,14 +31,46 @@
             android:layout_below="@+id/title_4"
             android:layout_centerHorizontal="true" />
 
+        <RadioGroup
+            android:orientation="vertical"
+            android:layout_below="@+id/comments"
+            android:id="@+id/robo_option"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/robo_option1"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/robo_option1"/>
+            <RadioButton
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:id="@+id/robo_option2"
+                android:text="@string/robo_option2"/>
+            <RadioButton
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:id="@+id/robo_option3"
+                android:text="@string/robo_option3"/>
+
+        </RadioGroup>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Finish"
             android:background="@color/greyedOut"
             android:id="@+id/goToFin"
+            android:layout_marginTop="235dp"
             android:layout_below="@+id/comments"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="43dp" />
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

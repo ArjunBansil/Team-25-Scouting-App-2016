@@ -72,7 +72,8 @@ public class DefenseAdapter extends RecyclerView.Adapter<DefenseAdapter.DefenseV
             public void onClick(View v) {
                 int b = d.getBreachCount();
                 list.get(count).setBreachCount(b+1);
-                holder.b_count.setText(list.get(count).getBreachCount() + "");
+                String  f = ""+ list.get(count).getBreachCount();
+                holder.b_count.setText(f);
                 if(holder.sp.getSelectedItem().toString().equals("0") && list.get(count).getBreachCount() == 1){
                     holder.sp.setSelection(1, true);
                 }else if(holder.sp.getSelectedItem().toString().equals("1") && list.get(count).getBreachCount() == 2){
@@ -91,7 +92,8 @@ public class DefenseAdapter extends RecyclerView.Adapter<DefenseAdapter.DefenseV
                 if(b>0){
                     list.get(count).setBreachCount(b-1);
                 }
-                holder.b_count.setText(list.get(count).getBreachCount()+"");
+                String f = "" + list.get(count).getBreachCount();
+                holder.b_count.setText(f);
                 if(Integer.parseInt(holder.sp.getSelectedItem().toString()) > 0 && list.get(count).getBreachCount() == 0 ){
                     holder.sp.setSelection(0, true);
                 }

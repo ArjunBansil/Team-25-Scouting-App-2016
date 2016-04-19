@@ -21,4 +21,8 @@
 
     <string name="password">fuckyou</string>
 
+    <string name="robo_option1">The robot is completely broken</string>
+    <string name="robo_option2">The robot is kind of damaged</string>
+    <string name="robo_option3">The robot is in decent condition</string>
+
 </resources>
