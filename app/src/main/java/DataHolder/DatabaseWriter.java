@@ -60,6 +60,7 @@ public class DatabaseWriter {
     private static String comma = ",";
     private Context context = null;
 
+    //TODO: Work on doing this stuff automatically
     public DatabaseWriter(Team t, Context c){
         this.team = t;
         this.auto = team.getAuto();

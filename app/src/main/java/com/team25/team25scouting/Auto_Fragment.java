@@ -164,7 +164,7 @@ public class Auto_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String defense = (String) sp.getSelectedItem();
-                Autonomous auto = new Autonomous(defense, shotsMadeHigh, shotsMadeLow, breach.isChecked(), reach.isChecked());
+                Autonomous auto = new Autonomous(defense, shotsMadeLow, shotsMadeHigh, breach.isChecked(), reach.isChecked());
                 ma.goToTele(auto);
             }
         });
