@@ -3,6 +3,7 @@ package com.team25.team25scouting;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -101,6 +102,7 @@ public class TeleOpFragment extends Fragment {
                 shot_low.setText(""+shotsLow);
             }
         });
+        //Changes have been made
 
         towerBreach.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -118,11 +120,16 @@ public class TeleOpFragment extends Fragment {
 
         RecyclerView recList = (RecyclerView)view.findViewById(R.id.defenseRecView);
         recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
-        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        GridLayoutManager llm = new GridLayoutManager(view.getContext(), 2);
         recList.setLayoutManager(llm);
         final MainActivity ma = (MainActivity)getActivity();
-        da = new DefenseAdapter(ma.d_present);
+        ArrayList<Defense> f = ma.d_present;
+        for(int i = 0; i < f.size(); i++){
+            if(f.get(i).getName().equals("Spy Box")){
+                f.remove(i);
+            }
+        }
+        da = new DefenseAdapter(f);
         recList.setAdapter(da);
 
 

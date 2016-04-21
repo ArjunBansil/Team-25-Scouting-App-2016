@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,24 +62,26 @@ public class Auto_Fragment extends Fragment {
         shotLow = (TextView)view.findViewById(R.id.shotsLow_A);
         shotHigh = (TextView)view.findViewById(R.id.shotsHigh_A);
         goNext = (Button)view.findViewById(R.id.goToTele);
-
         final MainActivity ma = (MainActivity)getActivity();
         ArrayList<Defense> list = ma.d_present;
         s_box = new Defense("Spy Box", 0, 0, getActivity().getApplicationContext());
+        Log.i("tag", "Spy Box object created");
         try{
             InputStream ims = getActivity().getApplicationContext().getResources().getAssets().open("Spy Box.png");
             Drawable d = Drawable.createFromStream(ims, null);
             Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
             s_box.setBitmap(bitmap);
+            Log.i("tag", "Spybox picture is added");
         }catch (Exception e){
             e.printStackTrace();
+            Log.i("tag", "Picture ain't there");
         }
         list.add(s_box);
+        Log.i("tag", "Added Spybox");
         ArrayList<String> temp = new ArrayList<String>();
         for(int i = 0; i<list.size(); i++){
             temp.add(list.get(i).getName());
         }
-
         sp = (Spinner)view.findViewById(R.id.defenseContainer);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext()
                 , android.R.layout.simple_spinner_item, temp);
