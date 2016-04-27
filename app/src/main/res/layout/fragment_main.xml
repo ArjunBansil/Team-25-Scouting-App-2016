@@ -12,6 +12,7 @@
 
         <android.support.v7.widget.CardView
             android:background="?android:attr/selectableItemBackground"
+            card-view:cardBackgroundColor="#fff"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             card-view:cardUseCompatPadding="true"
@@ -41,6 +42,7 @@
         <android.support.v7.widget.CardView
             android:background="?android:attr/selectableItemBackground"
             android:id="@+id/delete"
+            card-view:cardBackgroundColor="#fff"
             card-view:cardUseCompatPadding="true"
             card-view:elevation="10dp"
             android:layout_marginRight="5dp"
@@ -73,6 +75,7 @@
         <android.support.v7.widget.CardView
             android:background="?android:attr/selectableItemBackground"
             card-view:cardUseCompatPadding="true"
+            card-view:cardBackgroundColor="#fff"
             card-view:elevation="10dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
@@ -100,7 +103,6 @@
                 />
 
         </android.support.v7.widget.CardView>
-
 
     </RelativeLayout>
 
